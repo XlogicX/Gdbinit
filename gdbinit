@@ -56,6 +56,7 @@
 #   Version 8.0.1 (23/04/2012)
 #     - Small bug fix to the attsyntax and intelsyntax commands (changing X86 flavor variable was missing)
 #
+#
 #   Version 8.0 (13/04/2012)
 #     - Merged x86/x64 and ARM versions
 #     - Added commands intelsyntax and attsyntax to switch between x86 disassembly flavors
@@ -70,7 +71,7 @@
 # __________________gdb options_________________
 
 # set to 1 to have ARM target debugging as default, use the "arm" command to switch inside gdb
-set $ARM = 0
+set $ARM = 1
 # set to 0 if you have problems with the colorized prompt - reported by Plouj with Ubuntu gdb 7.2
 set $COLOREDPROMPT = 1
 # color the first line of the disassembly - default is green, if you want to change it search for
@@ -3172,9 +3173,9 @@ define hook-stop
 
     # Display instructions formats
     if $ARM == 1
-        if $ARMOPCODES == 1
-            set arm show-opcode-bytes 1
-        end
+        #if $ARMOPCODES == 1
+        #    set arm show-opcode-bytes 1
+        #end
     else
         if $X86FLAVOR == 0
             set disassembly-flavor intel
@@ -3678,9 +3679,9 @@ end
 
 
 define arm
-    if $ARMOPCODES == 1
-        set arm show-opcode-bytes 1
-    end
+    #if $ARMOPCODES == 1
+    #    set arm show-opcode-bytes 1
+    #end
     set $ARM = 1
 end
 document arm
